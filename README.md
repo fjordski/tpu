@@ -1,6 +1,6 @@
 # trash-pandas-web-app
 
-> A interactive website for the Trash Pandas ultimate team.
+> A web app for the Trash Pandas ultimate team. Uses Vue.js and Firebase~
 
 ## Build Setup
 
