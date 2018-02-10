@@ -3,10 +3,12 @@
   h1 {{ name }}
   .container.well
     RosterList(:roster='roster')
+    input(v-model='player', placeholder='Add an item')
+    button(@click='addItem') Add item
 </template>
 <script>
-import RosterList from './RosterList.vue';
 import firebase from 'firebase';
+import RosterList from './RosterList';
 
 const config = {
   apiKey: 'AIzaSyAesf5GKaCAlSThVoUYisdfvoKykCFCcHU',
@@ -18,15 +20,16 @@ const config = {
 };
 
 const application = firebase.initializeApp(config);
-let db = application.database();
+const db = application.database();
 
-let rosterRef = db.ref('Roster');
+const rosterRef = db.ref('Roster');
 
 export default {
   data: () => ({
     name: 'Roster ',
     // make computed
     actionText: 'Sign up',
+    player: '',
   }),
   firebase: {
     roster: rosterRef,
@@ -35,7 +38,13 @@ export default {
 
   },
   methods: {
-
+    addItem() {
+      alert(this.player)
+      console.log(this.$firebaseRefs);
+      this.$firebaseRefs.roster.push({
+        name: this.player,
+      });
+    },
   },
   mounted() {
 
